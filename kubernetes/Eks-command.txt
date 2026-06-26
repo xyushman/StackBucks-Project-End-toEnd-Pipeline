@@ -1,0 +1,31 @@
+eksctl create cluster \
+  --name=stackbuck-kb\
+  --region=us-east-1 \
+  --zones=us-east-1a,us-east-1b \
+  --version=1.30 \
+  --managed \
+  --without-nodegroup
+
+-----------------------------------------
+
+Run this command to fix the region and enable OIDC for your cluster:
+
+eksctl utils associate-iam-oidc-provider --region us-east-1 --cluster starbuck-kb --approve
+
+-------------------------------
+
+eksctl create nodegroup \
+  --cluster=starbuck-kb \
+  --region=us-east-1 \
+  --name=node2 \
+  --node-type=t3.medium \
+  --nodes=3 \
+  --nodes-min=2 \
+  --nodes-max=4 \
+  --node-volume-size=20 \
+  --ssh-access \
+  --ssh-public-key=starbuck-key \
+  --managed \
+  --asg-access \
+  --external-dns-access \
+  --full-ecr-access

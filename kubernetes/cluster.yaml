@@ -1,0 +1,16 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: my-test-cluster
+  region: us-east-1
+
+managedNodeGroups:
+  - name: final-node-group
+    instanceType: t3.medium
+    minSize: 2
+    maxSize: 2
+    iam:
+      withAddonPolicies:
+        autoScaler: true
+        cloudWatch: true
