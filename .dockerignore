@@ -1,0 +1,7 @@
+node_modules
+.git
+.trivy-cache
+.scannerwork
+trivyfs.txt
+trivyimage.txt
+npm-debug.log
